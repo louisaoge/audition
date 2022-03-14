@@ -3,53 +3,53 @@ const { gql } = require("apollo-server");
 exports.typeDefs = gql`
   type Query {
     hello: [String!]
-    tasks(filter: TasksFilterInput): [Task!]!
-    task(id: ID!): Task
-    phases: [Phase!]!
-    phase(id: ID!): Phase
+    steps(filter: StepsFilterInput): [Step!]!
+    step(id: ID!): Step
+    stages: [Stage!]!
+    stage(id: ID!): Stage
   }
 
   type Mutation {
-    addPhase(input: AddPhaseInput!): Phase!
-    addTask(input: AddTaskInput!): Task!
-    deletePhase(id: ID!): Boolean!
-    deleteTask(id: ID!): Boolean!
-    updatePhase(id: ID!, input: UpdatePhaseInput!): Phase
-    updateTask(id: ID!, input: UpdateTaskInput!): Task
+    addStage(input: AddStageInput!): Stage!
+    addStep(input: AddStepInput!): Step!
+    deleteStage(id: ID!): Boolean!
+    deleteStep(id: ID!): Boolean!
+    updateStage(id: ID!, input: UpdateStageInput!): Stage
+    updateStep(id: ID!, input: UpdateStepInput!): Step
   }
 
-  type Task {
+  type Step {
     id: ID!
     title: String!
     isComplete: Boolean!
-    phase: Phase!
+    stage: Stage!
   }
 
-  type Phase {
+  type Stage {
     id: ID!
     title: String!
-    tasks(filter: TasksFilterInput): [Task!]!
+    steps(filter: StepsFilterInput): [Step!]!
   }
 
-  input TasksFilterInput {
+  input StepsFilterInput {
     isComplete: Boolean
   }
 
-  input AddPhaseInput {
+  input AddStageInput {
     title: String!
   }
-  input AddTaskInput {
+  input AddStepInput {
     title: String!
     isComplete: Boolean!
-    phaseId: ID
+    stageId: ID
   }
 
-  input UpdatePhaseInput {
+  input UpdateStageInput {
     title: String!
   }
-  input UpdateTaskInput {
+  input UpdateStepInput {
     title: String
     isComplete: Boolean
-    phaseId: ID
+    stageId: ID
   }
 `;

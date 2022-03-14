@@ -1,50 +1,50 @@
 const { v4: uuid } = require("uuid");
 exports.Mutation = {
-  addPhase: (parent, { input }, { db }) => {
+  addStage: (parent, { input }, { db }) => {
     const { title } = input;
-    const newPhase = {
+    const newStage = {
       id: uuid(),
       title,
     };
-    db.phases.push(newPhase);
-    return newPhase;
+    db.stages.push(newStage);
+    return newStage;
   },
-  addTask: (parent, { input }, { db }) => {
-    const newTask = {
+  addStep: (parent, { input }, { db }) => {
+    const newStep = {
       id: uuid(),
       ...input,
     };
-    db.tasks.push(newTask);
-    return newTask;
+    db.steps.push(newStep);
+    return newStep;
   },
-  deletePhase: (parent, { id }, { db }) => {
-    db.phases = db.phases.filter((phase) => phase.id !== id);
-    db.tasks = db.tasks.map((task) => {
-      if (task.phaseId === id) {
+  deleteStage: (parent, { id }, { db }) => {
+    db.stages = db.stages.filter((stage) => stage.id !== id);
+    db.steps = db.steps.map((step) => {
+      if (step.stageId === id) {
         return {
-          ...task,
-          phaseId: null,
+          ...step,
+          stageId: null,
         };
       } else {
-        return task;
+        return step;
       }
     });
     return true;
   },
-  deleteTask: (parent, { id }, { db }) => {
-    db.tasks = db.tasks.filter((task) => task.id !== id);
+  deleteStep: (parent, { id }, { db }) => {
+    db.steps = db.steps.filter((step) => step.id !== id);
     return true;
   },
-  updatePhase: (parent, { id, input }, { db }) => {
-    const index = db.phases.findIndex((phase) => phase.id === id);
+  updateStage: (parent, { id, input }, { db }) => {
+    const index = db.stages.findIndex((stage) => stage.id === id);
     if (index === -1) return null;
-    db.phases[index] = Object.assign(db.phases[index], input);
-    return db.phases[index];
+    db.stages[index] = Object.assign(db.stages[index], input);
+    return db.stages[index];
   },
-  updateTask: (parent, { id, input }, { db }) => {
-    const index = db.tasks.findIndex((task) => task.id === id);
+  updateStep: (parent, { id, input }, { db }) => {
+    const index = db.steps.findIndex((step) => step.id === id);
     if (index === -1) return null;
-    db.tasks[index] = Object.assign(db.tasks[index], input);
-    return db.tasks[index];
+    db.steps[index] = Object.assign(db.steps[index], input);
+    return db.steps[index];
   },
 };
