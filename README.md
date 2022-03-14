@@ -31,7 +31,7 @@ To get a local copy up and running follow these simple steps.
    ```sh
    npm start
    ```
-4. Server is ready at http://localhost:4000/
+4. Server interface is ready at http://localhost:4000/
 
 
 ## Sample Query
