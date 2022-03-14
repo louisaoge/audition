@@ -9,13 +9,13 @@ exports.typeDefs = gql`
     phase(id: ID!): Phase
   }
 
-  type Mutation{
-      addPhase(input: AddPhaseInput!) : Phase!
-      addTask(input: AddTaskInput!) : Task!
-      deletePhase(id: ID!) : Boolean!
-      deleteTask(id: ID!): Boolean!
-      updatePhase(id: ID!, input: UpdatePhaseInput!): Phase
-      updateTask(id: ID!, input: UpdateTaskInput!): Task
+  type Mutation {
+    addPhase(input: AddPhaseInput!): Phase!
+    addTask(input: AddTaskInput!): Task!
+    deletePhase(id: ID!): Boolean!
+    deleteTask(id: ID!): Boolean!
+    updatePhase(id: ID!, input: UpdatePhaseInput!): Phase
+    updateTask(id: ID!, input: UpdateTaskInput!): Task
   }
 
   type Task {
@@ -31,25 +31,25 @@ exports.typeDefs = gql`
     tasks(filter: TasksFilterInput): [Task!]!
   }
 
-input TasksFilterInput{
+  input TasksFilterInput {
     isComplete: Boolean
-}
+  }
 
-input AddPhaseInput{
+  input AddPhaseInput {
     title: String!
-}
-input AddTaskInput{
+  }
+  input AddTaskInput {
     title: String!
     isComplete: Boolean!
     phaseId: ID
-}
+  }
 
-input UpdatePhaseInput{
+  input UpdatePhaseInput {
     title: String!
-}
-input UpdateTaskInput{
+  }
+  input UpdateTaskInput {
     title: String
     isComplete: Boolean
     phaseId: ID
-}
+  }
 `;

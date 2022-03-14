@@ -46,5 +46,5 @@ exports.Mutation = {
     if (index === -1) return null;
     db.tasks[index] = Object.assign(db.tasks[index], input);
     return db.tasks[index];
-  }
+  },
 };
